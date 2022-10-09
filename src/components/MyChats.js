@@ -8,11 +8,10 @@ import ChatLoading from "./ChatLoading";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
-import { useHistory } from "react-router";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState({});
-  const history = useHistory();
+
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
   const toast = useToast();
@@ -43,9 +42,8 @@ const MyChats = ({ fetchAgain }) => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
-    console.log(`user${user}`);
     // eslint-disable-next-line
-  }, [history,fetchAgain]);
+  }, [fetchAgain]);
 
   return (
     <Box
