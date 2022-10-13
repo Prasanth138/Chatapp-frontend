@@ -6,16 +6,21 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { ChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
+  const { selectedChat,setSelectedChat, setUser } = ChatState();
 
   const toast = useToast();
   const history = useHistory();
   const handleClick = () => setShow(!show);
+
+
+
 
   const submitHandler = async () => {
     setLoading(true);
@@ -48,6 +53,7 @@ const Login = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");
+      setSelectedChat();
       toast({
         title: "Login Successful",
         status: "success",
@@ -55,6 +61,8 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
+      setUser(data);
+
     } catch (error) {
       toast({
         title: "Error Occured!",

@@ -3,12 +3,19 @@ import { ChatState } from "../Context/ChatProvider";
 import SideDrawer from '../components/miscellaneous/SideDrawer';
 import MyChats from "../components/MyChats";
 import ChatBox from "../components/ChatBox";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const ChatPage = () => {
-  const { user } = ChatState();
-    const [fetchAgain, setFetchAgain] = useState(false);
+  const { user, setUser } = ChatState();
+  const history = useHistory();
+  const [fetchAgain, setFetchAgain] = useState(false);
 
+    useEffect(() => {
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+      setUser(userInfo);
+      setFetchAgain(false);
+    }, [history]);
     
   return (
     <div style={{ width: "100%" }}>
@@ -20,7 +27,7 @@ const ChatPage = () => {
         height="91.5vh"
         padding="10px"
       >
-        {user && <MyChats fetchAgain={fetchAgain} />}
+        {user && <MyChats fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
         {user && (
           <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
         )}

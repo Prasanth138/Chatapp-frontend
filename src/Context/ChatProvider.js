@@ -14,7 +14,6 @@ const ChatProvider = ({ children }) => {
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     setUser(userInfo);
-
     if (!userInfo) {
         history.push("/");
     }
@@ -37,7 +36,7 @@ const ChatProvider = ({ children }) => {
      </ChatContext.Provider>
    );
  };
-
+export const memo =React.memo(ChatProvider);
  export const ChatState = () => {
    return useContext(ChatContext);
  };

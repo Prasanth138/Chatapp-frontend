@@ -171,7 +171,7 @@ const UpdateGroupChatModal = ({fetchAgain, setFetchAgain, fetchMessages }) => {
           `${process.env.REACT_APP_API_URL}/api/user?search=${search}`,
           config
         );
-        console.log(data);
+        //console.log(data);
         setLoading(false);
         setSearchResult(data);
       } catch (error) {
