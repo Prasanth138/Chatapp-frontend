@@ -14,7 +14,7 @@ import io from 'socket.io-client';
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
 
-const ENDPOINT = "https://chatapp-backend-sand.vercel.app";
+const ENDPOINT = "https://chatapp-backend-c2bp.onrender.com";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
